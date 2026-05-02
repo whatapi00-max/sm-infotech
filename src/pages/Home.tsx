@@ -243,13 +243,34 @@ export default function Home() {
       </section>
 
       {/* Why choose us — premium image cards */}
-      <section className="container-page py-16 sm:py-20">
+      <section className="relative overflow-hidden">
+        {/* Small-boxes grid background */}
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-white"
+          style={{
+            backgroundImage:
+              'linear-gradient(to right, rgba(99,102,241,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(99,102,241,0.08) 1px, transparent 1px)',
+            backgroundSize: '40px 40px',
+            maskImage:
+              'radial-gradient(ellipse 80% 60% at 50% 50%, #000 40%, transparent 100%)',
+            WebkitMaskImage:
+              'radial-gradient(ellipse 80% 60% at 50% 50%, #000 40%, transparent 100%)',
+          }}
+        />
+        {/* Soft brand wash */}
+        <div
+          aria-hidden
+          className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-brand-50/40 to-transparent"
+        />
+
+        <div className="container-page relative py-16 sm:py-20">
         <div className="text-center max-w-2xl mx-auto">
           <span className="eyebrow">Why us</span>
           <h2 className="mt-3 text-2xl sm:text-3xl font-semibold">Why teams choose SM Infotech</h2>
           <p className="mt-2 text-slate-600">Three principles guide every project we take on.</p>
         </div>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <div className="mt-10 sm:mt-12 grid gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {reasons.map((r, i) => (
             <article
               key={r.title}
@@ -294,6 +315,7 @@ export default function Home() {
               </div>
             </article>
           ))}
+        </div>
         </div>
       </section>
 
