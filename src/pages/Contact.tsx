@@ -11,7 +11,7 @@ export default function Contact() {
     setForm((f) => ({ ...f, [k]: v }));
   }
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError(null);
 
@@ -25,12 +25,29 @@ export default function Contact() {
     }
 
     setSubmitting(true);
-    // Static submission: simulate a tiny delay then show success.
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      const data = new FormData();
+      data.append('access_key', 'fda117b3-14dc-4a78-9958-d053bc39aea6');
+      data.append('subject', `New contact enquiry from ${form.name}`);
+      data.append('from_name', 'SM Infotech Website');
+      data.append('name', form.name);
+      data.append('email', form.email);
+      data.append('message', form.message);
+
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: data,
+      });
+      const json = await res.json();
+      if (!json.success) throw new Error(json.message || 'Submission failed');
+
       setSubmitted(true);
       setForm({ name: '', email: '', message: '' });
-    }, 400);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -102,7 +119,7 @@ export default function Contact() {
           <div className="card">
             <h3 className="text-base font-semibold">Reach us directly</h3>
             <ul className="mt-4 space-y-3 text-sm text-slate-700">
-              <li className="flex items-center gap-2.5"><Mail size={16} className="text-brand-700" /> hello@sminfotech.com</li>
+              <li className="flex items-center gap-2.5"><Mail size={16} className="text-brand-700" /> info@sminfotechs.com</li>
               <li className="flex items-center gap-2.5"><Phone size={16} className="text-brand-700" /> +91 00000 00000</li>
               <li className="flex items-center gap-2.5"><MapPin size={16} className="text-brand-700" /> India</li>
             </ul>

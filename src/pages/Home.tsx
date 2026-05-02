@@ -16,6 +16,11 @@ import {
   Quote,
   Briefcase,
   Smartphone,
+  Check,
+  Users,
+  Cog,
+  PackageCheck,
+  TrendingUp,
 } from 'lucide-react';
 
 const services = [
@@ -181,6 +186,247 @@ export default function Home() {
               <p className="mt-1.5 text-sm text-slate-600 leading-relaxed">{r.desc}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Drive more revenue — embedded specialists */}
+      <section className="bg-white">
+        <div className="container-page py-16 sm:py-24">
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+            {/* Left content */}
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
+                Drive more revenue
+                <br />
+                <span className="text-brand-700">…without increasing in-house headcount</span>
+              </h2>
+              <p className="mt-3 text-sm text-slate-500">
+                Hire managed specialists who work as part of your team.
+              </p>
+
+              <div className="mt-10 space-y-8">
+                <div>
+                  <h3 className="text-base font-semibold text-slate-900">Dedicated, embedded specialists</h3>
+                  <ul className="mt-3 space-y-2.5">
+                    {[
+                      'Hire entire teams or FTEs',
+                      'Work inside your tools, workflows, and time zone',
+                      'Retain context and continuity',
+                    ].map((t) => (
+                      <li key={t} className="flex items-start gap-2.5 text-sm text-slate-700">
+                        <span className="mt-0.5 grid h-4 w-4 place-items-center rounded-full bg-brand-100 text-brand-700 shrink-0">
+                          <Check size={11} strokeWidth={3} />
+                        </span>
+                        {t}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="border-t border-dashed border-slate-200 pt-8">
+                  <h3 className="text-base font-semibold text-slate-900">Flexible capacity, zero hiring drag</h3>
+                  <ul className="mt-3 space-y-2.5">
+                    {[
+                      'Scale up or down as needed',
+                      'No recruitment delays or fixed overhead',
+                      'Adjust team mix as priorities change',
+                    ].map((t) => (
+                      <li key={t} className="flex items-start gap-2.5 text-sm text-slate-700">
+                        <span className="mt-0.5 grid h-4 w-4 place-items-center rounded-full bg-brand-100 text-brand-700 shrink-0">
+                          <Check size={11} strokeWidth={3} />
+                        </span>
+                        {t}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="border-t border-dashed border-slate-200 pt-8">
+                  <h3 className="text-base font-semibold text-slate-900">Control with accountability</h3>
+                  <ul className="mt-3 space-y-2.5">
+                    {[
+                      'You set priorities & direction',
+                      'We manage quality, delivery & SLAs',
+                      'Single point of coordination',
+                    ].map((t) => (
+                      <li key={t} className="flex items-start gap-2.5 text-sm text-slate-700">
+                        <span className="mt-0.5 grid h-4 w-4 place-items-center rounded-full bg-brand-100 text-brand-700 shrink-0">
+                          <Check size={11} strokeWidth={3} />
+                        </span>
+                        {t}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Right visual — stat card with growth metric */}
+            <div className="relative">
+              <p className="text-center text-sm text-slate-700 mb-6">
+                What a <span className="text-brand-700 font-semibold">dedicated resource team</span>
+                <br />
+                can do for your brand
+              </p>
+              <div className="relative rounded-3xl bg-gradient-to-br from-brand-100 via-brand-50 to-white p-6 shadow-soft">
+                <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-brand-600 to-brand-800 grid place-items-center">
+                  <div className="text-center">
+                    <Users size={48} className="text-white/90 mx-auto mb-3" />
+                    <p className="text-white text-lg font-semibold">Your embedded team</p>
+                    <p className="text-brand-100 text-sm mt-1">Strategy · Design · Engineering · Growth</p>
+                  </div>
+                </div>
+                {/* Floating metric card */}
+                <div className="absolute -bottom-8 -right-4 sm:-right-8 bg-white rounded-2xl shadow-xl border border-slate-100 p-5 w-56">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="grid h-7 w-7 place-items-center rounded-md bg-emerald-50 text-emerald-600">
+                      <TrendingUp size={14} />
+                    </span>
+                    <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Growth</span>
+                  </div>
+                  <p className="text-2xl font-bold text-slate-900">+1,900%</p>
+                  <p className="text-xs text-slate-500 mt-1">Average revenue lift across cohorts</p>
+                </div>
+              </div>
+              <div className="mt-16 text-center">
+                <Link to="/contact" className="btn-primary">
+                  Book a strategy call <ArrowRight size={16} />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Bringing strategy, execution, and scale together */}
+      <section className="bg-slate-50/70 border-y border-slate-200">
+        <div className="container-page py-16 sm:py-20">
+          <div className="max-w-3xl">
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
+              <span className="text-brand-700">Bringing strategy, execution, and scale</span>
+              <br />
+              <span className="text-slate-900">together</span>
+              <span className="text-slate-600"> —so each channel drives higher ROI</span>
+            </h2>
+          </div>
+
+          <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:gap-16">
+            {/* Column group 1 */}
+            <div className="grid gap-10 sm:grid-cols-2">
+              <div>
+                <h3 className="flex items-center gap-2 text-sm font-semibold text-slate-900">
+                  <span className="grid h-6 w-6 place-items-center rounded-md bg-brand-50 text-brand-700">
+                    <Lightbulb size={13} />
+                  </span>
+                  Lifecycle &amp; Strategy
+                </h3>
+                <ul className="mt-4 space-y-2 text-sm text-slate-600">
+                  <li className="hover:text-brand-700 cursor-default">Lifecycle Marketing</li>
+                  <li className="hover:text-brand-700 cursor-default">Strategy &amp; Consultation</li>
+                  <li className="hover:text-brand-700 cursor-default">Marketing Automation</li>
+                  <li className="hover:text-brand-700 cursor-default">Platform Migration / Support</li>
+                  <li className="hover:text-brand-700 cursor-default">Email Design &amp; Development</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="flex items-center gap-2 text-sm font-semibold text-slate-900">
+                  <span className="grid h-6 w-6 place-items-center rounded-md bg-brand-50 text-brand-700">
+                    <Globe size={13} />
+                  </span>
+                  Web &amp; Martech
+                </h3>
+                <ul className="mt-4 space-y-2 text-sm text-slate-600">
+                  <li className="hover:text-brand-700 cursor-default">CMS Development</li>
+                  <li className="hover:text-brand-700 cursor-default">Web &amp; Mobile Apps</li>
+                  <li className="hover:text-brand-700 cursor-default">Digital Assets</li>
+                  <li className="hover:text-brand-700 cursor-default">UI / UX</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Column group 2 */}
+            <div className="grid gap-10 sm:grid-cols-2">
+              <div>
+                <h3 className="flex items-center gap-2 text-sm font-semibold text-slate-900">
+                  <span className="grid h-6 w-6 place-items-center rounded-md bg-brand-50 text-brand-700">
+                    <Users size={13} />
+                  </span>
+                  Platform Expertise
+                </h3>
+                <ul className="mt-4 space-y-2 text-sm text-slate-600">
+                  <li className="hover:text-brand-700 cursor-default">SFMC</li>
+                  <li className="hover:text-brand-700 cursor-default">Braze</li>
+                  <li className="hover:text-brand-700 cursor-default">HubSpot</li>
+                  <li className="hover:text-brand-700 cursor-default">Marketo</li>
+                  <li className="hover:text-brand-700 cursor-default">Klaviyo</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="flex items-center gap-2 text-sm font-semibold text-slate-900">
+                  <span className="grid h-6 w-6 place-items-center rounded-md bg-brand-50 text-brand-700">
+                    <LineChart size={13} />
+                  </span>
+                  Digital Marketing
+                </h3>
+                <ul className="mt-4 space-y-2 text-sm text-slate-600">
+                  <li className="hover:text-brand-700 cursor-default">SEO Services</li>
+                  <li className="hover:text-brand-700 cursor-default">Paid Media</li>
+                  <li className="hover:text-brand-700 cursor-default">LLM &amp; AI SEO</li>
+                  <li className="hover:text-brand-700 cursor-default">GA4 &amp; Analytics</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-12">
+            <Link to="/contact" className="btn-primary">
+              Let's talk <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* How we're structured */}
+      <section className="container-page py-16 sm:py-20">
+        <div className="rounded-3xl border border-slate-200 bg-slate-50/60 p-8 sm:p-12">
+          <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+                How We're Structured
+              </h2>
+              <p className="mt-4 text-slate-600 leading-relaxed">
+                Our setup is built around documented SOPs that systemise daily execution and
+                maintain delivery consistency. This ensures every deliverable we provide is
+                predictable, scalable and most importantly reliable.
+              </p>
+            </div>
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-emerald-600 text-white">
+                  <Cog size={18} />
+                </span>
+                <div>
+                  <h3 className="text-base font-semibold text-slate-900">Operations</h3>
+                  <p className="mt-1 text-sm text-slate-600 leading-relaxed">
+                    Defined processes with review checkpoints so all your projects stay on track from start to finish.
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-emerald-600 text-white">
+                  <PackageCheck size={18} />
+                </span>
+                <div>
+                  <h3 className="text-base font-semibold text-slate-900">Delivery</h3>
+                  <p className="mt-1 text-sm text-slate-600 leading-relaxed">
+                    A 50+ in-house team, fully synced with you and completely invisible to your end-clients.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

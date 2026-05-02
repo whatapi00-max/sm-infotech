@@ -179,17 +179,40 @@ function ApplyModal({ job, onClose }: { job: Job; onClose: () => void }) {
     return null;
   }
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError(null);
     const err = validate();
     if (err) { setError(err); return; }
 
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      const data = new FormData();
+      data.append('access_key', 'fda117b3-14dc-4a78-9958-d053bc39aea6');
+      data.append('subject', `New job application: ${job.title}`);
+      data.append('from_name', 'SM Infotech Careers');
+      data.append('Position', job.title);
+      if (job.department) data.append('Department', job.department);
+      if (job.location)   data.append('Location', job.location);
+      data.append('name', form.name);
+      data.append('email', form.email);
+      data.append('phone', form.phone);
+      data.append('Cover Note', form.coverNote || '—');
+      if (form.resume) data.append('resume', form.resume, form.resume.name);
+
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: data,
+      });
+      const json = await res.json();
+      if (!json.success) throw new Error(json.message || 'Submission failed');
+
       setSubmitted(true);
-    }, 600);
+    } catch (e2) {
+      setError(e2 instanceof Error ? e2.message : 'Something went wrong. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (

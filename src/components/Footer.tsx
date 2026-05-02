@@ -29,7 +29,7 @@ export default function Footer() {
         <div>
           <h4 className="text-sm font-semibold text-slate-900">Reach us</h4>
           <ul className="mt-3 space-y-2 text-sm text-slate-600">
-            <li className="flex items-center gap-2"><Mail size={14} /> hello@sminfotech.com</li>
+            <li className="flex items-center gap-2"><Mail size={14} /> info@sminfotechs.com</li>
             <li className="flex items-center gap-2"><Phone size={14} /> +91 00000 00000</li>
             <li className="flex items-center gap-2"><MapPin size={14} /> India</li>
           </ul>
