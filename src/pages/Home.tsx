@@ -5,9 +5,6 @@ import {
   Share2,
   Megaphone,
   Sparkles,
-  ShieldCheck,
-  Gauge,
-  Target,
   Globe,
   Lightbulb,
   LineChart,
@@ -37,9 +34,24 @@ const stats = [
 ];
 
 const reasons = [
-  { icon: ShieldCheck, title: 'Trust',       desc: 'Transparent reporting, clear scope, and honest communication—every engagement.' },
-  { icon: Gauge,       title: 'Performance', desc: 'Fast iterations, data-driven decisions, and a focus on what moves the metric.' },
-  { icon: Target,      title: 'Results',     desc: 'We measure what matters and optimize until the numbers reflect the goal.' },
+  {
+    title: 'Trust',
+    desc: 'Transparent reporting, clear scope, and honest communication—every engagement.',
+    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80',
+    tag: 'Partnership',
+  },
+  {
+    title: 'Performance',
+    desc: 'Fast iterations, data-driven decisions, and a focus on what moves the metric.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+    tag: 'Analytics',
+  },
+  {
+    title: 'Results',
+    desc: 'We measure what matters and optimize until the numbers reflect the goal.',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+    tag: 'Growth',
+  },
 ];
 
 const industries = [
@@ -230,28 +242,57 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why choose us */}
+      {/* Why choose us — premium image cards */}
       <section className="container-page py-16 sm:py-20">
         <div className="text-center max-w-2xl mx-auto">
           <span className="eyebrow">Why us</span>
           <h2 className="mt-3 text-2xl sm:text-3xl font-semibold">Why teams choose SM Infotech</h2>
           <p className="mt-2 text-slate-600">Three principles guide every project we take on.</p>
         </div>
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
           {reasons.map((r, i) => (
-            <div key={r.title} className="card group overflow-hidden">
-              <span
-                aria-hidden
-                className="absolute right-5 top-5 text-5xl font-black text-slate-100 select-none leading-none transition-colors group-hover:text-brand-50"
-              >
-                0{i + 1}
-              </span>
-              <div className="icon-tile">
-                <r.icon size={18} />
+            <article
+              key={r.title}
+              className="group relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white shadow-soft transition-all duration-500 hover:shadow-premium hover:-translate-y-1 hover:border-brand-200/80"
+            >
+              {/* Image */}
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <img
+                  src={r.image}
+                  alt={r.title}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
+                />
+                {/* Gradient overlay */}
+                <div
+                  aria-hidden
+                  className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-900/30 to-transparent"
+                />
+                {/* Top-right number */}
+                <span
+                  aria-hidden
+                  className="absolute right-5 top-5 text-[11px] font-semibold tracking-[0.22em] uppercase text-white/80 backdrop-blur-sm bg-white/10 border border-white/20 rounded-full px-3 py-1"
+                >
+                  0{i + 1}
+                </span>
+                {/* Tag on image */}
+                <span className="absolute bottom-5 left-5 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1 text-[11px] font-semibold tracking-[0.14em] uppercase text-brand-700 shadow-sm">
+                  {r.tag}
+                </span>
               </div>
-              <h3 className="mt-4 text-base font-semibold">{r.title}</h3>
-              <p className="mt-1.5 text-sm text-slate-600 leading-relaxed">{r.desc}</p>
-            </div>
+
+              {/* Content */}
+              <div className="p-6">
+                <h3 className="text-lg font-semibold text-slate-900 group-hover:text-brand-700 transition-colors">
+                  {r.title}
+                </h3>
+                <p className="mt-2 text-sm text-slate-600 leading-relaxed">{r.desc}</p>
+                <div className="mt-5 flex items-center gap-2 text-sm font-semibold text-brand-700">
+                  <span className="h-px w-6 bg-brand-300 transition-all duration-300 group-hover:w-10 group-hover:bg-brand-500" />
+                  <span className="opacity-80 group-hover:opacity-100 transition">Our commitment</span>
+                </div>
+              </div>
+            </article>
           ))}
         </div>
       </section>
