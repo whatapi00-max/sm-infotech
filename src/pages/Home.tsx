@@ -125,13 +125,17 @@ export default function Home() {
       </section>
 
       {/* Stats strip */}
-      <section className="border-y border-slate-200 bg-white">
-        <div className="container-page py-10">
-          <dl className="grid grid-cols-2 gap-6 sm:grid-cols-4">
-            {stats.map((s) => (
-              <div key={s.label} className="text-center">
-                <dt className="text-3xl font-bold text-brand-700">{s.value}</dt>
-                <dd className="mt-1 text-sm text-slate-500">{s.label}</dd>
+      <section className="section-alt">
+        <div className="container-page py-12">
+          <dl className="grid grid-cols-2 gap-8 sm:grid-cols-4 divide-y divide-slate-200 sm:divide-y-0 sm:divide-x">
+            {stats.map((s, i) => (
+              <div key={s.label} className={`text-center ${i === 0 ? 'pt-0' : 'pt-8'} sm:pt-0 sm:px-4`}>
+                <dt className="text-3xl sm:text-4xl font-bold bg-gradient-to-br from-brand-700 to-brand-500 bg-clip-text text-transparent">
+                  {s.value}
+                </dt>
+                <dd className="mt-2 text-xs sm:text-sm font-medium tracking-wide text-slate-500 uppercase">
+                  {s.label}
+                </dd>
               </div>
             ))}
           </dl>
@@ -187,7 +191,7 @@ export default function Home() {
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
             <div key={s.title} className="card group hover:border-brand-200 hover:shadow-md transition-all">
-              <div className="grid h-10 w-10 place-items-center rounded-md bg-brand-50 text-brand-700">
+              <div className="icon-tile">
                 <s.icon size={18} />
               </div>
               <h3 className="mt-4 text-base font-semibold">{s.title}</h3>
@@ -206,7 +210,7 @@ export default function Home() {
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           {reasons.map((r) => (
             <div key={r.title} className="card">
-              <div className="grid h-10 w-10 place-items-center rounded-md bg-brand-50 text-brand-700">
+              <div className="icon-tile">
                 <r.icon size={18} />
               </div>
               <h3 className="mt-4 text-base font-semibold">{r.title}</h3>

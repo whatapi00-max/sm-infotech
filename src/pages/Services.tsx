@@ -92,7 +92,7 @@ export default function Services() {
               to={`/contact?service=${encodeURIComponent(s.title)}`}
               className="card group hover:border-brand-200 hover:shadow-md transition-all flex flex-col"
             >
-              <div className="grid h-10 w-10 place-items-center rounded-md bg-brand-50 text-brand-700">
+              <div className="icon-tile">
                 <s.icon size={18} />
               </div>
               <h3 className="mt-4 text-base font-semibold group-hover:text-brand-700 transition-colors">
@@ -123,7 +123,7 @@ export default function Services() {
                 <span className="absolute top-4 right-4 text-4xl font-black text-slate-100 select-none leading-none">
                   {p.step}
                 </span>
-                <div className="grid h-10 w-10 place-items-center rounded-md bg-brand-50 text-brand-700">
+                <div className="icon-tile">
                   <p.icon size={18} />
                 </div>
                 <h3 className="mt-4 text-base font-semibold">{p.title}</h3>
