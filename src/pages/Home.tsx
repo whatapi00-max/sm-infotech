@@ -138,13 +138,13 @@ export default function Home() {
       {/* Stats strip */}
       <section className="section-alt">
         <div className="container-page py-12">
-          <dl className="grid grid-cols-2 gap-8 sm:grid-cols-4 divide-y divide-slate-200 sm:divide-y-0 sm:divide-x">
-            {stats.map((s, i) => (
-              <div key={s.label} className={`text-center ${i === 0 ? 'pt-0' : 'pt-8'} sm:pt-0 sm:px-4`}>
+          <dl className="grid grid-cols-2 sm:grid-cols-4 gap-y-8 gap-x-6">
+            {stats.map((s) => (
+              <div key={s.label} className="text-center px-2">
                 <dt className="text-3xl sm:text-4xl font-bold bg-gradient-to-br from-brand-700 to-brand-500 bg-clip-text text-transparent">
                   {s.value}
                 </dt>
-                <dd className="mt-2 text-xs sm:text-sm font-medium tracking-wide text-slate-500 uppercase">
+                <dd className="mt-2 text-[11px] sm:text-xs font-medium tracking-wider text-slate-500 uppercase">
                   {s.label}
                 </dd>
               </div>
