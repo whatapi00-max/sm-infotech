@@ -84,19 +84,36 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-50/60 to-white" aria-hidden />
-        <div className="container-page relative py-20 sm:py-28 text-center">
-          <span className="badge mb-5">IT Services & Digital Marketing</span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-slate-900">
+      <section className="relative overflow-hidden bg-white">
+        {/* Subtle dot grid background */}
+        <div
+          aria-hidden
+          className="absolute inset-0 opacity-[0.4]"
+          style={{
+            backgroundImage:
+              'radial-gradient(circle at 1px 1px, rgb(148 163 184 / 0.35) 1px, transparent 0)',
+            backgroundSize: '28px 28px',
+          }}
+        />
+        {/* Soft top wash */}
+        <div className="absolute inset-x-0 top-0 h-[420px] bg-gradient-to-b from-brand-50/40 to-transparent" aria-hidden />
+
+        <div className="container-page relative py-24 sm:py-32 text-center">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white/80 backdrop-blur px-3 py-1 text-[11px] font-medium tracking-[0.15em] uppercase text-slate-600 shadow-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
+            IT Services & Digital Marketing
+          </span>
+          <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-slate-900 leading-[1.1]">
             Marketing that earns trust.
             <br className="hidden sm:block" />
             <span className="text-brand-700"> Performance that compounds.</span>
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-base sm:text-lg text-slate-600">
-            SM Infotech is an IT services and digital marketing company helping businesses grow through software development, web & app solutions, and performance-driven campaigns.
+          <p className="mx-auto mt-6 max-w-2xl text-base sm:text-lg text-slate-600 leading-relaxed">
+            SM Infotech is an IT services and digital marketing company helping
+            businesses grow through software development, web &amp; app solutions,
+            and performance-driven campaigns.
           </p>
-          <div className="mt-8 flex items-center justify-center gap-3 flex-wrap">
+          <div className="mt-9 flex items-center justify-center gap-3 flex-wrap">
             <Link to="/contact" className="btn-primary">
               Get in Touch <ArrowRight size={16} />
             </Link>
@@ -118,6 +135,36 @@ export default function Home() {
               </div>
             ))}
           </dl>
+        </div>
+      </section>
+
+      {/* Our Clients — auto-scrolling marquee (minimalist) */}
+      <section className="bg-white">
+        <div className="py-14 sm:py-16">
+          <div className="container-page text-center max-w-xl mx-auto mb-10">
+            <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-brand-700">
+              Our Clients
+            </span>
+            <h2 className="mt-3 text-xl sm:text-2xl font-semibold text-slate-900">
+              Trusted by ambitious teams worldwide
+            </h2>
+          </div>
+
+          {/* Marquee — refined edge fade, pauses on hover */}
+          <div className="marquee-pause relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+            <div className="animate-marquee flex w-max gap-10 sm:gap-14 px-6">
+              {[...clients, ...clients].map((name, i) => (
+                <div
+                  key={`${name}-${i}`}
+                  className="shrink-0 flex items-center justify-center"
+                >
+                  <span className="text-base sm:text-lg font-semibold tracking-tight text-slate-400 hover:text-slate-700 transition-colors select-none whitespace-nowrap">
+                    {name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -430,35 +477,6 @@ export default function Home() {
                 >
                   {ind}
                 </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Clients — auto-scrolling marquee */}
-      <section className="bg-white border-y border-slate-200">
-        <div className="py-16 sm:py-20">
-          <div className="container-page text-center max-w-2xl mx-auto mb-10">
-            <span className="badge mb-4">Our Clients</span>
-            <h2 className="text-2xl sm:text-3xl font-semibold">Join our impressive clientele</h2>
-            <p className="mt-2 text-slate-600">
-              Trusted by ambitious brands across industries.
-            </p>
-          </div>
-
-          {/* Marquee wrapper — fades on edges, pauses on hover */}
-          <div className="marquee-pause relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-            <div className="animate-marquee flex w-max gap-5 px-4">
-              {[...clients, ...clients].map((name, i) => (
-                <div
-                  key={`${name}-${i}`}
-                  className="shrink-0 w-48 h-24 rounded-xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white shadow-soft flex items-center justify-center px-5"
-                >
-                  <span className="text-base font-semibold tracking-tight text-slate-500 select-none">
-                    {name}
-                  </span>
-                </div>
               ))}
             </div>
           </div>
