@@ -97,18 +97,22 @@ export default function Home() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden bg-white">
-        {/* Subtle dot grid background */}
+        {/* Small-boxes grid background with radial fade */}
         <div
           aria-hidden
-          className="absolute inset-0 opacity-[0.4]"
+          className="absolute inset-0"
           style={{
             backgroundImage:
-              'radial-gradient(circle at 1px 1px, rgb(148 163 184 / 0.35) 1px, transparent 0)',
-            backgroundSize: '28px 28px',
+              'linear-gradient(to right, rgba(99,102,241,0.09) 1px, transparent 1px), linear-gradient(to bottom, rgba(99,102,241,0.09) 1px, transparent 1px)',
+            backgroundSize: '36px 36px',
+            maskImage:
+              'radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 100%)',
+            WebkitMaskImage:
+              'radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 100%)',
           }}
         />
         {/* Soft top wash */}
-        <div className="absolute inset-x-0 top-0 h-[420px] bg-gradient-to-b from-brand-50/50 to-transparent" aria-hidden />
+        <div className="absolute inset-x-0 top-0 h-[420px] bg-gradient-to-b from-brand-50/60 to-transparent" aria-hidden />
         {/* Decorative radial glow */}
         <div
           aria-hidden
