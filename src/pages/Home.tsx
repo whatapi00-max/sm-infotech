@@ -96,17 +96,27 @@ export default function Home() {
           }}
         />
         {/* Soft top wash */}
-        <div className="absolute inset-x-0 top-0 h-[420px] bg-gradient-to-b from-brand-50/40 to-transparent" aria-hidden />
+        <div className="absolute inset-x-0 top-0 h-[420px] bg-gradient-to-b from-brand-50/50 to-transparent" aria-hidden />
+        {/* Decorative radial glow */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-1/2 top-28 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-brand-200/30 blur-3xl"
+        />
 
         <div className="container-page relative py-24 sm:py-32 text-center">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white/80 backdrop-blur px-3 py-1 text-[11px] font-medium tracking-[0.15em] uppercase text-slate-600 shadow-sm">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
-            IT Services & Digital Marketing
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-500 opacity-60" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand-500" />
+            </span>
+            IT Services &amp; Digital Marketing
           </span>
           <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-slate-900 leading-[1.1]">
             Marketing that earns trust.
             <br className="hidden sm:block" />
-            <span className="text-brand-700"> Performance that compounds.</span>
+            <span className="bg-gradient-to-r from-brand-700 via-brand-600 to-brand-500 bg-clip-text text-transparent">
+              {' '}Performance that compounds.
+            </span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base sm:text-lg text-slate-600 leading-relaxed">
             SM Infotech is an IT services and digital marketing company helping
@@ -114,8 +124,9 @@ export default function Home() {
             and performance-driven campaigns.
           </p>
           <div className="mt-9 flex items-center justify-center gap-3 flex-wrap">
-            <Link to="/contact" className="btn-primary">
-              Get in Touch <ArrowRight size={16} />
+            <Link to="/contact" className="btn-primary group">
+              Get in Touch
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link to="/services" className="btn-secondary">
               View Services
@@ -190,13 +201,31 @@ export default function Home() {
         </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
-            <div key={s.title} className="card group hover:border-brand-200 hover:shadow-md transition-all">
-              <div className="icon-tile">
+            <Link
+              key={s.title}
+              to={`/contact?service=${encodeURIComponent(s.title)}`}
+              className="card group flex flex-col overflow-hidden"
+            >
+              {/* Top accent bar reveals on hover */}
+              <span
+                aria-hidden
+                className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-brand-500 via-brand-600 to-brand-500 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
+              />
+              <div className="icon-tile group-hover:from-brand-100 group-hover:to-brand-200/80 group-hover:text-brand-800">
                 <s.icon size={18} />
               </div>
-              <h3 className="mt-4 text-base font-semibold">{s.title}</h3>
-              <p className="mt-1.5 text-sm text-slate-600 leading-relaxed">{s.desc}</p>
-            </div>
+              <h3 className="mt-4 text-base font-semibold text-slate-900 group-hover:text-brand-700 transition-colors">
+                {s.title}
+              </h3>
+              <p className="mt-1.5 text-sm text-slate-600 leading-relaxed flex-1">{s.desc}</p>
+              <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-brand-700">
+                Learn more
+                <ArrowRight
+                  size={14}
+                  className="transition-transform group-hover:translate-x-1"
+                />
+              </span>
+            </Link>
           ))}
         </div>
       </section>
@@ -204,12 +233,19 @@ export default function Home() {
       {/* Why choose us */}
       <section className="container-page py-16 sm:py-20">
         <div className="text-center max-w-2xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-semibold">Why teams choose SM Infotech</h2>
+          <span className="eyebrow">Why us</span>
+          <h2 className="mt-3 text-2xl sm:text-3xl font-semibold">Why teams choose SM Infotech</h2>
           <p className="mt-2 text-slate-600">Three principles guide every project we take on.</p>
         </div>
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
-          {reasons.map((r) => (
-            <div key={r.title} className="card">
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
+          {reasons.map((r, i) => (
+            <div key={r.title} className="card group overflow-hidden">
+              <span
+                aria-hidden
+                className="absolute right-5 top-5 text-5xl font-black text-slate-100 select-none leading-none transition-colors group-hover:text-brand-50"
+              >
+                0{i + 1}
+              </span>
               <div className="icon-tile">
                 <r.icon size={18} />
               </div>
@@ -490,15 +526,28 @@ export default function Home() {
       {/* Testimonials */}
       <section className="container-page py-16 sm:py-20">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="badge mb-4">Client voices</span>
-          <h2 className="text-2xl sm:text-3xl font-semibold">What our clients say</h2>
+          <span className="eyebrow">Client voices</span>
+          <h2 className="mt-3 text-2xl sm:text-3xl font-semibold">What our clients say</h2>
         </div>
         <div className="grid gap-5 md:grid-cols-3">
           {testimonials.map((t) => (
-            <div key={t.name} className="card flex flex-col gap-4">
-              <Quote size={20} className="text-brand-300 shrink-0" />
-              <p className="text-sm text-slate-700 leading-relaxed flex-1">"{t.quote}"</p>
-              <div>
+            <div key={t.name} className="card flex flex-col gap-4 overflow-hidden">
+              <Quote
+                aria-hidden
+                size={72}
+                className="absolute -right-3 -top-3 text-brand-50 rotate-180"
+              />
+              <div className="relative">
+                <div className="flex items-center gap-0.5 text-amber-400 mb-3" aria-label="5-star rating">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <svg key={i} width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.78L10 14.77l-5.2 2.73.99-5.78-4.21-4.1 5.82-.85L10 1.5z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-sm text-slate-700 leading-relaxed">"{t.quote}"</p>
+              </div>
+              <div className="relative pt-4 border-t border-slate-100">
                 <p className="text-sm font-semibold text-slate-900">{t.name}</p>
                 <p className="text-xs text-slate-500">{t.role}</p>
               </div>
@@ -509,14 +558,47 @@ export default function Home() {
 
       {/* CTA */}
       <section className="container-page py-16 sm:py-20">
-        <div className="rounded-2xl border border-slate-200 bg-white p-8 sm:p-12 shadow-soft flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-          <div>
-            <h3 className="text-xl sm:text-2xl font-semibold">Ready to grow with clarity?</h3>
-            <p className="mt-1.5 text-slate-600">Tell us about your goals—we'll respond within 1 business day.</p>
+        <div className="relative overflow-hidden rounded-3xl border border-slate-800/10 bg-slate-900 p-8 sm:p-12 shadow-xl">
+          {/* Decorative gradient glow */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -top-20 -right-20 h-72 w-72 rounded-full bg-brand-500/30 blur-3xl"
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-brand-700/20 blur-3xl"
+          />
+          {/* Subtle dot pattern */}
+          <div
+            aria-hidden
+            className="absolute inset-0 opacity-[0.15]"
+            style={{
+              backgroundImage:
+                'radial-gradient(circle at 1px 1px, rgb(255 255 255 / 0.5) 1px, transparent 0)',
+              backgroundSize: '24px 24px',
+            }}
+          />
+
+          <div className="relative flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div className="max-w-lg">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[11px] font-semibold tracking-[0.15em] uppercase text-brand-200 backdrop-blur">
+                Let's build
+              </span>
+              <h3 className="mt-4 text-2xl sm:text-3xl font-semibold text-white leading-tight">
+                Ready to grow with clarity?
+              </h3>
+              <p className="mt-2 text-slate-300 leading-relaxed">
+                Tell us about your goals—we'll respond within 1 business day.
+              </p>
+            </div>
+            <Link
+              to="/contact"
+              className="group inline-flex items-center justify-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl shrink-0"
+            >
+              Start a conversation
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            </Link>
           </div>
-          <Link to="/contact" className="btn-primary shrink-0">
-            Start a conversation <ArrowRight size={16} />
-          </Link>
         </div>
       </section>
     </>
