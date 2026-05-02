@@ -103,12 +103,12 @@ export default function Home() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              'linear-gradient(to right, rgba(99,102,241,0.09) 1px, transparent 1px), linear-gradient(to bottom, rgba(99,102,241,0.09) 1px, transparent 1px)',
-            backgroundSize: '36px 36px',
+              'linear-gradient(to right, rgba(79,70,229,0.18) 1px, transparent 1px), linear-gradient(to bottom, rgba(79,70,229,0.18) 1px, transparent 1px)',
+            backgroundSize: '34px 34px',
             maskImage:
-              'radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 100%)',
+              'radial-gradient(ellipse 90% 80% at 50% 45%, #000 55%, transparent 100%)',
             WebkitMaskImage:
-              'radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 100%)',
+              'radial-gradient(ellipse 90% 80% at 50% 45%, #000 55%, transparent 100%)',
           }}
         />
         {/* Soft top wash */}
@@ -254,12 +254,12 @@ export default function Home() {
           className="absolute inset-0 bg-white"
           style={{
             backgroundImage:
-              'linear-gradient(to right, rgba(99,102,241,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(99,102,241,0.08) 1px, transparent 1px)',
-            backgroundSize: '40px 40px',
+              'linear-gradient(to right, rgba(79,70,229,0.16) 1px, transparent 1px), linear-gradient(to bottom, rgba(79,70,229,0.16) 1px, transparent 1px)',
+            backgroundSize: '38px 38px',
             maskImage:
-              'radial-gradient(ellipse 80% 60% at 50% 50%, #000 40%, transparent 100%)',
+              'radial-gradient(ellipse 90% 75% at 50% 50%, #000 55%, transparent 100%)',
             WebkitMaskImage:
-              'radial-gradient(ellipse 80% 60% at 50% 50%, #000 40%, transparent 100%)',
+              'radial-gradient(ellipse 90% 75% at 50% 50%, #000 55%, transparent 100%)',
           }}
         />
         {/* Soft brand wash */}
