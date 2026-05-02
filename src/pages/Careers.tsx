@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
 import {
   Briefcase,
   MapPin,
@@ -7,11 +7,11 @@ import {
   AlertTriangle,
   Building2,
   X,
-  Upload,
   CheckCircle2,
   Phone,
   Mail,
   User,
+  Link2,
 } from 'lucide-react';
 import { supabase, isSupabaseConfigured, type Job } from '../lib/supabase';
 
@@ -140,42 +140,38 @@ type ApplyForm = {
   email: string;
   phone: string;
   coverNote: string;
-  resume: File | null;
+  resumeUrl: string;
+  portfolioUrl: string;
 };
 
 function ApplyModal({ job, onClose }: { job: Job; onClose: () => void }) {
   const [form, setForm] = useState<ApplyForm>({
-    name: '', email: '', phone: '', coverNote: '', resume: null,
+    name: '', email: '', phone: '', coverNote: '', resumeUrl: '', portfolioUrl: '',
   });
   const [error, setError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const fileRef = useRef<HTMLInputElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
   function set<K extends keyof ApplyForm>(k: K, v: ApplyForm[K]) {
     setForm((f) => ({ ...f, [k]: v }));
   }
 
-  function handleFile(e: ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0] ?? null;
-    if (file && file.size > 5 * 1024 * 1024) {
-      setError('Resume must be under 5 MB.');
-      return;
-    }
-    set('resume', file);
-    setError(null);
-  }
-
   function handleOverlayClick(e: React.MouseEvent<HTMLDivElement>) {
     if (e.target === overlayRef.current) onClose();
+  }
+
+  function isValidUrl(u: string) {
+    try { new URL(u); return true; } catch { return false; }
   }
 
   function validate() {
     if (!form.name.trim()) return 'Please enter your full name.';
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) return 'Please enter a valid email address.';
     if (!form.phone.trim()) return 'Please enter your phone number.';
-    if (!form.resume) return 'Please attach your resume (PDF or Word).';
+    if (!form.resumeUrl.trim()) return 'Please share a link to your resume.';
+    if (!isValidUrl(form.resumeUrl)) return 'Please enter a valid resume URL (starting with https://).';
+    if (form.portfolioUrl.trim() && !isValidUrl(form.portfolioUrl)) return 'Please enter a valid portfolio URL.';
     return null;
   }
 
@@ -198,7 +194,8 @@ function ApplyModal({ job, onClose }: { job: Job; onClose: () => void }) {
       data.append('email', form.email);
       data.append('phone', form.phone);
       data.append('Cover Note', form.coverNote || '—');
-      if (form.resume) data.append('resume', form.resume, form.resume.name);
+      data.append('Resume Link', form.resumeUrl);
+      if (form.portfolioUrl.trim()) data.append('Portfolio / LinkedIn', form.portfolioUrl);
 
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -309,37 +306,33 @@ function ApplyModal({ job, onClose }: { job: Job; onClose: () => void }) {
             </div>
 
             <div>
-              <label className="label">Resume <span className="text-slate-500 font-normal text-xs">(PDF or Word, max 5 MB)</span></label>
-              <div
-                onClick={() => fileRef.current?.click()}
-                className="cursor-pointer rounded-md border-2 border-dashed border-slate-200 bg-slate-50 px-4 py-5 text-center transition hover:border-brand-400 hover:bg-brand-50/40"
-              >
-                {form.resume ? (
-                  <div className="flex items-center justify-center gap-2 text-sm text-slate-700">
-                    <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />
-                    <span className="truncate max-w-xs">{form.resume.name}</span>
-                    <button
-                      type="button"
-                      onClick={(e) => { e.stopPropagation(); set('resume', null); if (fileRef.current) fileRef.current.value = ''; }}
-                      className="ml-1 text-slate-400 hover:text-red-500"
-                    >
-                      <X size={14} />
-                    </button>
-                  </div>
-                ) : (
-                  <div className="flex flex-col items-center gap-1.5 text-sm text-slate-500">
-                    <Upload size={18} className="text-slate-400" />
-                    <span><span className="font-medium text-brand-700">Click to upload</span> or drag & drop</span>
-                    <span className="text-xs text-slate-400">PDF, DOC, DOCX</span>
-                  </div>
-                )}
-              </div>
+              <label className="label" htmlFor="apply-resume">
+                <span className="inline-flex items-center gap-1.5"><Link2 size={13} /> Resume link</span>
+              </label>
               <input
-                ref={fileRef}
-                type="file"
-                accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                className="hidden"
-                onChange={handleFile}
+                id="apply-resume"
+                type="url"
+                className="input"
+                value={form.resumeUrl}
+                onChange={(e) => set('resumeUrl', e.target.value)}
+                placeholder="https://drive.google.com/... or Dropbox / OneDrive link"
+              />
+              <p className="mt-1.5 text-xs text-slate-500">
+                Share a public link to your resume (Google Drive, Dropbox, OneDrive, or hosted PDF).
+              </p>
+            </div>
+
+            <div>
+              <label className="label" htmlFor="apply-portfolio">
+                Portfolio / LinkedIn <span className="text-slate-400 font-normal">(optional)</span>
+              </label>
+              <input
+                id="apply-portfolio"
+                type="url"
+                className="input"
+                value={form.portfolioUrl}
+                onChange={(e) => set('portfolioUrl', e.target.value)}
+                placeholder="https://linkedin.com/in/yourname"
               />
             </div>
 

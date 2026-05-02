@@ -14,7 +14,6 @@ import {
   Rocket,
   LineChart,
   Quote,
-  Briefcase,
   Smartphone,
   Check,
   Users,
@@ -268,13 +267,14 @@ export default function Home() {
                 <br />
                 can do for your brand
               </p>
-              <div className="relative rounded-3xl bg-gradient-to-br from-brand-100 via-brand-50 to-white p-6 shadow-soft">
-                <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-brand-600 to-brand-800 grid place-items-center">
-                  <div className="text-center">
-                    <Users size={48} className="text-white/90 mx-auto mb-3" />
-                    <p className="text-white text-lg font-semibold">Your embedded team</p>
-                    <p className="text-brand-100 text-sm mt-1">Strategy · Design · Engineering · Growth</p>
-                  </div>
+              <div className="relative rounded-3xl bg-gradient-to-br from-brand-100 via-brand-50 to-white p-4 sm:p-6 shadow-soft">
+                <div className="aspect-[4/3] rounded-2xl overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80"
+                    alt="A dedicated team collaborating in a modern office"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
                 </div>
                 {/* Floating metric card */}
                 <div className="absolute -bottom-8 -right-4 sm:-right-8 bg-white rounded-2xl shadow-xl border border-slate-100 p-5 w-56">
@@ -472,26 +472,6 @@ export default function Home() {
               </div>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* Careers teaser */}
-      <section className="bg-brand-50/50 border-y border-brand-100">
-        <div className="container-page py-14 sm:py-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-          <div className="flex items-start gap-4">
-            <div className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-brand-100 text-brand-700">
-              <Briefcase size={20} />
-            </div>
-            <div>
-              <h2 className="text-xl font-semibold">Join our growing team</h2>
-              <p className="mt-1 text-sm text-slate-600 max-w-md">
-                We're always looking for curious, driven people. See if there's a role that fits you.
-              </p>
-            </div>
-          </div>
-          <Link to="/careers" className="btn-primary shrink-0">
-            View open roles <ArrowRight size={16} />
-          </Link>
         </div>
       </section>
 
