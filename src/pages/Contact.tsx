@@ -50,7 +50,7 @@ export default function Contact() {
     setSubmitting(true);
     try {
       const data = new FormData();
-      data.append('access_key', 'fda117b3-14dc-4a78-9958-d053bc39aea6');
+      data.append('access_key', 'aea5299f-0bb9-474d-860e-6585f5ab9d6b');
       data.append('subject', `New contact enquiry from ${form.name}`);
       data.append('from_name', 'SM Infotech Website');
       data.append('name', form.name);
