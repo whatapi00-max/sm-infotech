@@ -329,13 +329,14 @@ export default function Home() {
             </div>
 
             {/* Right visual — stat card with growth metric */}
-            <div className="relative">
-              <p className="text-center text-sm text-slate-700 mb-6">
+            <div className="relative mt-8 lg:mt-0">
+              <p className="text-center text-sm text-slate-700 mb-6 px-4">
                 What a <span className="text-brand-700 font-semibold">dedicated resource team</span>
-                <br />
-                can do for your brand
+                {' '}can do for your brand
               </p>
-              <div className="relative rounded-3xl bg-gradient-to-br from-brand-100 via-brand-50 to-white p-4 sm:p-6 shadow-soft">
+
+              {/* Image + metric wrapper */}
+              <div className="relative rounded-3xl bg-gradient-to-br from-brand-100 via-brand-50 to-white p-3 sm:p-5 shadow-soft">
                 <div className="aspect-[4/3] rounded-2xl overflow-hidden">
                   <img
                     src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80"
@@ -344,21 +345,35 @@ export default function Home() {
                     loading="lazy"
                   />
                 </div>
-                {/* Floating metric card */}
-                <div className="absolute -bottom-8 -right-4 sm:-right-8 bg-white rounded-2xl shadow-xl border border-slate-100 p-5 w-56">
+
+                {/* Metric card — floats on sm+, stacks neatly below image on mobile */}
+                <div
+                  className="
+                    mt-4 sm:mt-0
+                    sm:absolute sm:-bottom-6 sm:right-4 lg:-right-6
+                    bg-white rounded-2xl shadow-xl border border-slate-100
+                    p-4 sm:p-5 w-full sm:w-56 max-w-sm mx-auto
+                  "
+                >
                   <div className="flex items-center gap-2 mb-2">
                     <span className="grid h-7 w-7 place-items-center rounded-md bg-emerald-50 text-emerald-600">
                       <TrendingUp size={14} />
                     </span>
-                    <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Growth</span>
+                    <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                      Growth
+                    </span>
                   </div>
                   <p className="text-2xl font-bold text-slate-900">+1,900%</p>
-                  <p className="text-xs text-slate-500 mt-1">Average revenue lift across cohorts</p>
+                  <p className="text-xs text-slate-500 mt-1">
+                    Average revenue lift across cohorts
+                  </p>
                 </div>
               </div>
-              <div className="mt-16 text-center">
-                <Link to="/contact" className="btn-primary">
-                  Book a strategy call <ArrowRight size={16} />
+
+              <div className="mt-8 sm:mt-12 text-center">
+                <Link to="/contact" className="btn-primary group">
+                  Book a strategy call
+                  <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
                 </Link>
               </div>
             </div>
