@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -30,15 +30,13 @@ export default function Footer() {
           <h4 className="text-sm font-semibold text-slate-900">Reach us</h4>
           <ul className="mt-3 space-y-2 text-sm text-slate-600">
             <li className="flex items-center gap-2"><Mail size={14} /> info@sminfotechs.com</li>
-            <li className="flex items-center gap-2"><Phone size={14} /> +91 00000 00000</li>
             <li className="flex items-center gap-2"><MapPin size={14} /> India</li>
           </ul>
         </div>
       </div>
       <div className="border-t border-slate-200">
-        <div className="container-page flex flex-col sm:flex-row items-center justify-between py-4 text-xs text-slate-500">
-          <span>© {year} SM Infotech. All rights reserved.</span>
-          <span className="mt-2 sm:mt-0">Built with care for clarity and trust.</span>
+        <div className="container-page py-4 text-center text-xs text-slate-500">
+          © {year} SM Infotech. All rights reserved.
         </div>
       </div>
     </footer>

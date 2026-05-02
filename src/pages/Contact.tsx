@@ -1,11 +1,34 @@
-import { useState, type FormEvent } from 'react';
-import { Mail, MapPin, Phone, Send, CheckCircle2 } from 'lucide-react';
+import { useState, useEffect, type FormEvent } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { Mail, MapPin, Send, CheckCircle2 } from 'lucide-react';
 
 export default function Contact() {
+  const [searchParams] = useSearchParams();
+  const selectedService = searchParams.get('service');
+
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    message: selectedService
+      ? `Hi SM Infotech team, I'd like to learn more about your ${selectedService} service.\n\n`
+      : '',
+  });
+
+  // Keep message in sync if the user navigates between services without unmounting
+  useEffect(() => {
+    if (selectedService) {
+      setForm((f) => ({
+        ...f,
+        message:
+          f.message && !f.message.includes(selectedService)
+            ? f.message
+            : `Hi SM Infotech team, I'd like to learn more about your ${selectedService} service.\n\n`,
+      }));
+    }
+  }, [selectedService]);
 
   function update<K extends keyof typeof form>(k: K, v: string) {
     setForm((f) => ({ ...f, [k]: v }));
@@ -120,7 +143,6 @@ export default function Contact() {
             <h3 className="text-base font-semibold">Reach us directly</h3>
             <ul className="mt-4 space-y-3 text-sm text-slate-700">
               <li className="flex items-center gap-2.5"><Mail size={16} className="text-brand-700" /> info@sminfotechs.com</li>
-              <li className="flex items-center gap-2.5"><Phone size={16} className="text-brand-700" /> +91 00000 00000</li>
               <li className="flex items-center gap-2.5"><MapPin size={16} className="text-brand-700" /> India</li>
             </ul>
           </div>

@@ -10,8 +10,6 @@ import {
   Target,
   Globe,
   Lightbulb,
-  ClipboardList,
-  Rocket,
   LineChart,
   Quote,
   Smartphone,
@@ -44,16 +42,24 @@ const reasons = [
   { icon: Target,      title: 'Results',     desc: 'We measure what matters and optimize until the numbers reflect the goal.' },
 ];
 
-const process = [
-  { icon: ClipboardList, step: '01', title: 'Discovery',   desc: 'We audit your current presence, define your audience, and identify growth gaps.' },
-  { icon: Lightbulb,     step: '02', title: 'Strategy',    desc: 'A clear, channel-specific plan tied to your business goals—not a generic playbook.' },
-  { icon: Rocket,        step: '03', title: 'Execution',   desc: 'Our team ships campaigns, content, and creative on schedule without hand-holding.' },
-  { icon: LineChart,     step: '04', title: 'Optimisation', desc: 'Weekly analysis, A/B testing, and iteration until you see compounding returns.' },
-];
-
 const industries = [
   'E-commerce', 'Real Estate', 'Healthcare', 'Education',
   'SaaS & Tech', 'Hospitality', 'Finance', 'Retail', 'Gaming',
+];
+
+const clients = [
+  'Acme Corp',
+  'Lumen Labs',
+  'NovaSoft',
+  'BrightWave',
+  'PixelForge',
+  'Zenith Media',
+  'Quanta Tech',
+  'NorthPeak',
+  'Helio Systems',
+  'Vertex AI',
+  'BlueOrbit',
+  'StackHub',
 ];
 
 const testimonials = [
@@ -141,31 +147,6 @@ export default function Home() {
               <p className="mt-1.5 text-sm text-slate-600 leading-relaxed">{s.desc}</p>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* How we work */}
-      <section className="bg-slate-50/70 border-y border-slate-200">
-        <div className="container-page py-16 sm:py-20">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="badge mb-4">Our process</span>
-            <h2 className="text-2xl sm:text-3xl font-semibold">How we work</h2>
-            <p className="mt-2 text-slate-600">
-              A repeatable four-step framework that removes guesswork and drives growth.
-            </p>
-          </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {process.map((p) => (
-              <div key={p.step} className="card relative overflow-hidden">
-                <span className="absolute top-4 right-4 text-4xl font-black text-slate-100 select-none leading-none">{p.step}</span>
-                <div className="grid h-10 w-10 place-items-center rounded-md bg-brand-50 text-brand-700">
-                  <p.icon size={18} />
-                </div>
-                <h3 className="mt-4 text-base font-semibold">{p.title}</h3>
-                <p className="mt-1.5 text-sm text-slate-600 leading-relaxed">{p.desc}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -449,6 +430,35 @@ export default function Home() {
                 >
                   {ind}
                 </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Clients — auto-scrolling marquee */}
+      <section className="bg-white border-y border-slate-200">
+        <div className="py-16 sm:py-20">
+          <div className="container-page text-center max-w-2xl mx-auto mb-10">
+            <span className="badge mb-4">Our Clients</span>
+            <h2 className="text-2xl sm:text-3xl font-semibold">Join our impressive clientele</h2>
+            <p className="mt-2 text-slate-600">
+              Trusted by ambitious brands across industries.
+            </p>
+          </div>
+
+          {/* Marquee wrapper — fades on edges, pauses on hover */}
+          <div className="marquee-pause relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+            <div className="animate-marquee flex w-max gap-5 px-4">
+              {[...clients, ...clients].map((name, i) => (
+                <div
+                  key={`${name}-${i}`}
+                  className="shrink-0 w-48 h-24 rounded-xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white shadow-soft flex items-center justify-center px-5"
+                >
+                  <span className="text-base font-semibold tracking-tight text-slate-500 select-none">
+                    {name}
+                  </span>
+                </div>
               ))}
             </div>
           </div>
